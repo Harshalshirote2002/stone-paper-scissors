@@ -2,6 +2,8 @@ const cards = Array.from(document.querySelectorAll('.hand'));
 bottomBar = document.querySelector('.bottom-bar');
 humanScore = document.querySelector('.human');
 cpuScore = document.querySelector('.cpu');
+button = document.querySelector('button');
+
 
 cards.forEach(card => card.addEventListener('mouseover', (e) => e.target.classList.add('highlighted-icon')));
 cards.forEach(card => card.addEventListener('mouseleave', (e) => e.target.classList.remove('highlighted-icon')));
@@ -37,24 +39,51 @@ function gameRound(playerSelection, computerSelection) {
     }
 }
 
+const resetGame = function () {
+    score1 = 0;
+    score2 = 0;
+    roundNumber = 0;
+    computerSelectionOld = null;
+    cards.forEach(card => { if ((Array.from(card.classList)).includes('highlighted-icon')) card.classList.remove('highlighted-icon') });
+    scoreUpdate();
+    console.log("The game was reset!");
+}
+
+const scoreUpdate = function(){
+    humanScore.textContent = `Score: ${score1}`;
+    cpuScore.textContent = `Score: ${score2}`;
+}
+
+const bottomBarUpdate = function () {
+    if (score1 > score2) {
+        bottomBar.textContent = `Player leads the game with ${score1 - score2} points!`
+    } else if (score1 < score2) {
+        bottomBar.textContent = `computer leads game with ${score2 - score1} points!`
+    } else {
+        bottomBar.textContent = "It's currently a tie!";
+    }
+}
+
 function playGame(e) {
     roundNumber += 1;
     playerSelection = e.target.id;
     computerSelection = getComputerChoice();
-    if(computerSelectionOld==null){
+
+    if (computerSelectionOld == null) {
         cpuHand = document.querySelector(`.cpu-${computerSelection}`);
         cpuHand.classList.add('highlighted-icon');
         computerSelectionOld = computerSelection;
-    }else{
+    } else {
         cpuHand = document.querySelector(`.cpu-${computerSelectionOld}`);
         cpuHand.classList.remove('highlighted-icon');
         cpuHand = document.querySelector(`.cpu-${computerSelection}`);
         cpuHand.classList.add('highlighted-icon');
         computerSelectionOld = computerSelection;
     }
-    
+
     console.log(`player has selected ${playerSelection}`);
     console.log(`computer has selected ${computerSelection}`);
+
     if (gameRound(playerSelection, computerSelection) == 0) {
         console.log("draw!");
     } else if (gameRound(playerSelection, computerSelection) == 1) {
@@ -64,16 +93,10 @@ function playGame(e) {
         console.log("computer beats player");
         score2 += 1
     }
-    humanScore.textContent = `Score: ${score1}`;
-    cpuScore.textContent = `Score: ${score2}`;
 
-    if(score1>score2){
-        bottomBar.textContent = `Player leads the game with ${score1-score2} points!`
-    }else if(score1<score2){
-        bottomBar.textContent = `computer leads game with ${score2-score1} points!`
-    }else{
-        bottomBar.textContent  = "It's currently a tie!";
-    }
+    scoreUpdate();
+
+    bottomBarUpdate();
 
     if (roundNumber == 5) {
         if (score1 > score2) {
@@ -86,18 +109,17 @@ function playGame(e) {
             bottomBar.textContent = "it's a draw!"
             console.log("it's a draw!");
         }
-        
-        score1 = 0;
-        score2 = 0;
-        roundNumber = 0;
-        computerSelectionOld=null;
+        resetGame();
     }
 }
 
 let score1 = 0;
 let score2 = 0;
 let roundNumber = 0;
-computerSelectionOld=null;
+computerSelectionOld = null;
+
 cards.forEach(card => card.addEventListener('click', playGame));
+
+button.addEventListener('click', resetGame);
 
 
