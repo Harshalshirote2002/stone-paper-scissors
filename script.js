@@ -46,7 +46,6 @@ const resetGame = function () {
     computerSelectionOld = null;
     cards.forEach(card => { if ((Array.from(card.classList)).includes('highlighted-icon')) card.classList.remove('highlighted-icon') });
     scoreUpdate();
-    console.log("The game was reset!");
 }
 
 const scoreUpdate = function(){
@@ -81,16 +80,13 @@ function playGame(e) {
         computerSelectionOld = computerSelection;
     }
 
-    console.log(`player has selected ${playerSelection}`);
-    console.log(`computer has selected ${computerSelection}`);
 
     if (gameRound(playerSelection, computerSelection) == 0) {
-        console.log("draw!");
     } else if (gameRound(playerSelection, computerSelection) == 1) {
-        console.log("player beats computer");
+        
         score1 += 1;
     } else {
-        console.log("computer beats player");
+        
         score2 += 1
     }
 
@@ -101,13 +97,13 @@ function playGame(e) {
     if (roundNumber == 5) {
         if (score1 > score2) {
             bottomBar.textContent = `The player beats computer by ${score1 - score2} points thus winning the game!.`;
-            console.log(`The player beats computer by ${score1 - score2} points thus winning the game!.`);
+            
         } else if (score1 < score2) {
             bottomBar.textContent = `The computer beats player by ${score2 - score1} points thus winning the game!.`;
-            console.log(`The computer beats player by ${score2 - score1} points thus winning the game!.`);
+            
         } else {
             bottomBar.textContent = "it's a draw!"
-            console.log("it's a draw!");
+            
         }
         resetGame();
     }
