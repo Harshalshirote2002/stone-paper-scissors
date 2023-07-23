@@ -1,0 +1,72 @@
+/* *{
+    border: 2px solid white;
+} */
+
+body{
+    background: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main{
+    border: 2px solid white;
+    min-height: 500px;
+    min-width: 100px;
+    /* width: 100%; */
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 10px 50px;
+}
+
+.play-window{
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+}
+
+.player1, .player2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+h1, h2, h3{
+    color: aliceblue;
+}
+
+.hand{
+    max-height: 80px;
+}
+
+.icon{
+    max-height: 150px;
+}
+
+.choices{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+card{
+    color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Classes to add transition */
+
+.highlighted-icon{
+    transform: scale(1.2);
+    box-shadow: 0 0 1rem #ffc600;
+}

@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stone-Paper-Scissors | The Odin Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-    <input type="text">
-    <script src="script.js"></script>
+
+    <div class="control-bar">
+        <h1>Stone-Paper-Scissors</h1>
+    </div>
+
+    <div class="main">
+        <h2>Play here!</h2>
+
+        <div class="play-window">
+            <div class="player1">
+                <img class="icon" src="images/player-icon.png">
+                <h3 class="human">score: </h3>
+                <div class="choices">
+                    <card><img class="hand" id="stone" src="images/stone.png">stone</card>
+                    <card><img class="hand" id="paper" src="images/paper.png">paper</card>
+                    <card><img class="hand" id="scissors" src="images/scissors.png">scissors</card>
+                </div>
+            </div>
+
+            <div class="player2">
+                <img class="icon" src="images/computer-icon.png">
+                <h3 class="cpu">score: </h3>
+                <div class="choices">
+                    <card><img class="hand cpu-stone" src="images/stone.png">stone</card>
+                    <card><img class="hand cpu-paper" src="images/paper.png">paper</card>
+                    <card><img class="hand cpu-scissors" src="images/scissors.png">scissors</card>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <h1 class="bottom-bar">Start Playing!</h1>
+    </div>
 </body>
+
 </html>
