@@ -79,6 +79,24 @@ card{
     align-items: center;
 }
 
+footer{
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.fa-github {
+    color: whitesmoke;
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
+}
+
 /* Classes to add transition */
 
 .highlighted-icon{
