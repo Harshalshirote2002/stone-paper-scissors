@@ -45,6 +45,12 @@ const resetGame = function () {
     roundNumber = 0;
     computerSelectionOld = null;
     cards.forEach(card => { if ((Array.from(card.classList)).includes('highlighted-icon')) card.classList.remove('highlighted-icon') });
+    cpuHands = Array.from(document.querySelectorAll('.cpu-hand'));
+    cpuHands.forEach(cpuHand => {
+        if(Array.from(cpuHand.classList).includes('highlighted-icon')){
+            cpuHand.classList.remove('highlighted-icon');
+        }
+    })
     scoreUpdate();
 }
 
@@ -64,7 +70,6 @@ const bottomBarUpdate = function () {
 }
 
 function playGame(e) {
-    roundNumber += 1;
     playerSelection = e.target.id;
     computerSelection = getComputerChoice();
 
@@ -94,12 +99,12 @@ function playGame(e) {
 
     bottomBarUpdate();
 
-    if (roundNumber == 5) {
+    if (score1==5 || score2==5) {
         if (score1 > score2) {
-            bottomBar.textContent = `The player beats computer by ${score1 - score2} points thus winning the game!.`;
+            bottomBar.textContent = `The player beats computer by ${score1 - score2} points thus winning the game!`;
             
         } else if (score1 < score2) {
-            bottomBar.textContent = `The computer beats player by ${score2 - score1} points thus winning the game!.`;
+            bottomBar.textContent = `The computer beats player by ${score2 - score1} points thus winning the game!`;
             
         } else {
             bottomBar.textContent = "it's a draw!"
@@ -111,7 +116,6 @@ function playGame(e) {
 
 let score1 = 0;
 let score2 = 0;
-let roundNumber = 0;
 computerSelectionOld = null;
 
 cards.forEach(card => card.addEventListener('click', playGame));
